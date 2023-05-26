@@ -68,11 +68,16 @@ public class CommonServiceImpl implements CommonService {
         return bookRepository.findAll(pageable);
     }
 
-    @Override
+      @Override
     public void addBooksCategories(String category) throws Exception {
+        Optional<Categories> optionalCategories=categoriesRepository.findByName(category);
+        if(optionalCategories.isPresent()){
+            throw new Exception("Category already exists");
+        }
         Categories categories = Categories.builder().categoryName(category).build();
         categoriesRepository.save(categories);
     }
+
 
     @Override
     public void addBooksCategoryXref(BookCategoryXrefDto bookCategoryXrefDto) throws Exception {
