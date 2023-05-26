@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    show-sql: true
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+          time_zone: UTC
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bookstore
+    username: root
+    password: root
+    hikari:
+      minimumIdle: 1
+      maximumPoolSize: 20
+      idleTimeout: 30000
+      connectionTimeout: 40000
+      maxLifetime: 900000
+
