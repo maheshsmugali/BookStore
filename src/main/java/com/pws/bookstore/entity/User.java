@@ -2,15 +2,19 @@ package com.pws.bookstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.UUID;
 
 @Data
+@Validated
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -29,7 +33,7 @@ public class User {
 
     @Column(name = "user_name", nullable = false)
     private String userName;
-
+    @Email
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
@@ -37,14 +41,3 @@ public class User {
     private long phoneNumber;
 }
 
-
-
-
-
-
-
-
-
-//@Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}")
-//
-//@Pattern(regexp = "\\d{10}", message = "Invalid phone number format")
